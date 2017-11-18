@@ -20,7 +20,7 @@ class VisorBtnCancelar extends Component {
             // This function is able to dispatch other action creators
             this.props.borrarChapa();
             this.props.contadorEn1()
-        }, 100 );
+        }, 16 );
     }
 
     render() {

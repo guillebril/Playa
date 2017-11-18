@@ -11,6 +11,15 @@ import DetalleModal from './DetalleModal'
 
 import AppBar from '../generales/AppBar'
 
+import { createSelector } from 'reselect'
+const getKeyword = (state) => state.chapa
+const getVehiculos = (state) => state.vehiculos
+const getVisibleVehiculosbyChapa = createSelector(
+  [ getVehiculos, getKeyword ],
+  (visibleVehiculos, keyword) => visibleVehiculos.filter(
+    vehiculo => vehiculo.chapa.includes(keyword)
+  )
+)
 
 
 class TarjetasContenedor extends Component {
@@ -20,7 +29,6 @@ class TarjetasContenedor extends Component {
       console.log('actualiza')
     }
     render() {
-        let filtradosChapa = this.props.vehiculos.filter(vehiculo => vehiculo.chapa.includes(this.props.chapaVisor))
         return ( <ScrollView>
           <AppBar/>
           <View
@@ -30,7 +38,7 @@ class TarjetasContenedor extends Component {
               initialNumToRender={6}
               maxToRenderPerBatch={6}
               keyExtractor = {(item, index) => item.horaIngreso}
-              data={filtradosChapa.filter( vehiculo => vehiculo.tarifa === 'xHora'  )}
+              data={this.props.vehiculos.filter( vehiculo => vehiculo.tarifa === 'xHora'  )}
               renderItem={({item}) => <TarjetaHs
                 {...item}/>}
             />
@@ -39,7 +47,7 @@ class TarjetasContenedor extends Component {
               initialNumToRender={6}
               maxToRenderPerBatch={6}
               keyExtractor = {(item, index) => item.horaIngreso}
-              data={filtradosChapa.filter( vehiculo => vehiculo.tarifa === 'Doctor'   )}
+              data={this.props.vehiculos.filter( vehiculo => vehiculo.tarifa === 'Doctor'   )}
               renderItem={({item}) => <TarjetaDoc
                 {...item}/>}
             />
@@ -47,7 +55,7 @@ class TarjetasContenedor extends Component {
               initialNumToRender={6}
               maxToRenderPerBatch={6}
               keyExtractor = {(item, index) => item.horaIngreso}
-              data={filtradosChapa.filter( vehiculo => vehiculo.tarifa === 'Estadia' ) }
+              data={this.props.vehiculos.filter( vehiculo => vehiculo.tarifa === 'Estadia' ) }
               renderItem={({item}) =>
                 <Tarjeta24
                   {...item}/>}
@@ -59,8 +67,8 @@ class TarjetasContenedor extends Component {
     }
 }
 
-function mapStateToProps( state ) {
-    return { vehiculos: state.vehiculos, chapaVisor: state.chapa};
+function mapStateToProps( state, props ) {
+    return { vehiculos: getVisibleVehiculosbyChapa(state, props)};
 }
 export default connect( mapStateToProps )( TarjetasContenedor );
 

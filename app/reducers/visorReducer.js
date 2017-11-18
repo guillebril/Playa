@@ -111,6 +111,7 @@ export const vehiculos = createReducer( [], {
 
 
 
+
 export const toggleModal = createReducer( false , {
     [ types.TOGGLE_MODAL ]( state, action ) {
           state = !state
