@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import TarjetaTiempoPerman from './TarjetaTiempoPerman'
+import moment from 'moment';
+
 
 //ICONOS
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
@@ -16,7 +19,6 @@ class TarjetaGenerica extends Component {
   }
 
   render() {
-  //  if (this.props.chapaVisor.length === 0 || this.props.chapa.includes(this.props.chapaVisor)) {
       return (
         <View
           borderTopWidth={6}
@@ -43,26 +45,20 @@ class TarjetaGenerica extends Component {
               <View>
                 <Text style={styles.textSupDer}>
                   {this.props.texto1}
-                  {this.props.ingreso}
+                  {this.props.horaIngreso}
                 </Text>
-
                 <View style={styles.tiempo}>
                   <Text style={styles.textQuedan}>
                     {this.props.texto2}
                   </Text>
-                  <Text style={styles.textbig}>
-                    {this.props.tiempo1}h {this.props.tiempo2}m
-                  </Text>
+                  
+                  <TarjetaTiempoPerman horaIngreso={this.props.horaIngreso}/>
                 </View>
               </View>
             </View>
           </TouchableHighlight>
 
         </View>)
-    // } else {
-    //   return (
-    //     null)
-    // }
   }
 }
 const styles = StyleSheet.create({
@@ -117,7 +113,5 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ActionCreators, dispatch);
 }
 
-function mapStateToProps(state) {
-  return { chapaVisor: state.chapa };
-}
-export default connect(mapStateToProps, mapDispatchToProps)(TarjetaGenerica);
+
+export default connect(null, mapDispatchToProps)(TarjetaGenerica);
