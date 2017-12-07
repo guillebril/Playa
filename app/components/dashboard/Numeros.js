@@ -6,12 +6,12 @@ import VisorBtnCancelar from './VisorBtnCancelar'
 import EntradaBtn from './EntradaBtn'
 
 export default class Numeros extends Component {
-    render( ) {
-        return (
-            <View style={styles.contenedorNumeros}>
-                <View style={styles.filaNumeros}>
-                    <Numero numero={'7'}/>
-                    <Numero numero={'8'}/>
+  render() {
+    return (
+      <View style={styles.contenedorNumeros}>
+              <View style={styles.filaNumeros}>
+                <Numero numero={'7'}/>
+                <Numero numero={'8'}/>
                     <Numero numero={'9'}/>
                 </View>
                 <View style={styles.filaNumeros}>
@@ -30,26 +30,26 @@ export default class Numeros extends Component {
                     <VisorBtnCancelar/>
                 </View>
             </View>
-        );
-    }
+    );
+  }
 }
 const styles = StyleSheet.create({
-    contenedorNumeros: {
-        flex: 1
-    },
-    filaNumeros: {
-        flex: 1,
-        flexDirection: 'row'
-    },
-    elementonum: {
-        flex: 1,
-        margin: 20,
-        backgroundColor: '#444444',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    texto: {
-        color: '#fff',
-        fontSize: 19
-    }
+  contenedorNumeros: {
+    flex: 1
+  },
+  filaNumeros: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+  elementonum: {
+    flex: 1,
+    margin: 20,
+    backgroundColor: '#444444',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  texto: {
+    color: '#fff',
+    fontSize: 19
+  }
 });

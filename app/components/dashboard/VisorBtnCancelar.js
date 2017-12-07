@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, TouchableNativeFeedback, View } from 'react-native';
+import { StyleSheet, TouchableHighlight, TouchableNativeFeedback, View } from 'react-native';
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -8,60 +8,59 @@ import { ActionCreators } from '../../actions/indexActions.js'
 //ICONOS
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import icoMoonConfig from '../fonts/selection.json';
-const Icon = createIconSetFromIcoMoon( icoMoonConfig );
+const Icon = createIconSetFromIcoMoon(icoMoonConfig);
 
 //COMPONENTE
 class VisorBtnCancelar extends Component {
 
-    borrarChapa() {
-        this.props.borrarChapaVisor()
+  borrarChapa() {
+    this.props.borrarChapaVisor()
+    setTimeout(() => {
+      // This function is able to dispatch other action creators
+      this.props.borrarChapa();
+      this.props.contadorEn1()
+    }, 20);
+  }
 
-        setTimeout( () => {
-            // This function is able to dispatch other action creators
-            this.props.borrarChapa();
-            this.props.contadorEn1()
-        }, 16 );
-    }
+  render() {
+    return (<View style={styles.cancelar}>
 
-    render() {
-        return ( <View style={styles.cancelar}>
+          <TouchableNativeFeedback
+            background={TouchableNativeFeedback.SelectableBackgroundBorderless()}
+            onPress={() => {
+              this.borrarChapa()
+            }}>
 
-            <TouchableNativeFeedback
-                background={TouchableNativeFeedback.SelectableBackgroundBorderless()}
-                onPress={() => {
-                    this.borrarChapa()
-                }}>
+            <View style={styles.cancelarCont}>
+              <Icon name="cancelar" size={30} color="#fff" style={styles.cancelarIcon}/>
+            </View>
+          </TouchableNativeFeedback>
 
-                <View style={styles.cancelarCont}>
-                    <Icon name="cancelar" size={30} color="#fff" style={styles.cancelarIcon}/>
-                </View>
-            </TouchableNativeFeedback>
-
-        </View> );
-    }
+        </View>);
+  }
 }
 
-function mapDispatchToProps( dispatch ) {
-    return bindActionCreators( ActionCreators, dispatch )
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(ActionCreators, dispatch)
 }
-export default connect( null, mapDispatchToProps )( VisorBtnCancelar );
+export default connect(null, mapDispatchToProps)(VisorBtnCancelar);
 
-const styles = StyleSheet.create( {
-    cancelar: {
-        flex: 1,
-        opacity: 0.5,
-        paddingLeft: 25,
-        marginRight: 15,
-        justifyContent: 'center'
-    },
+const styles = StyleSheet.create({
+  cancelar: {
+    flex: 1,
+    opacity: 0.5,
+    paddingLeft: 25,
+    marginRight: 15,
+    justifyContent: 'center'
+  },
 
-    cancelarIcon: {
-        paddingTop: 35,
-        left: 30
-    },
+  cancelarIcon: {
+    paddingTop: 35,
+    left: 30
+  },
 
-    cancelarCont: {
-        height: 90
-    }
+  cancelarCont: {
+    height: 90
+  }
 
-} );
+});

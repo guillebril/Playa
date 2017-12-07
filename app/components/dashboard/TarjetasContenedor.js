@@ -14,20 +14,21 @@ import AppBar from '../generales/AppBar'
 import { createSelector } from 'reselect'
 const getKeyword = (state) => state.chapa
 const getVehiculos = (state) => state.vehiculos
+
 const getVisibleVehiculosbyChapa = createSelector(
+
   [ getVehiculos, getKeyword ],
   (visibleVehiculos, keyword) => visibleVehiculos.filter(
     vehiculo => vehiculo.chapa.includes(keyword)
   )
+
 )
 
 
 class TarjetasContenedor extends Component {
-
-
     componentDidUpdate(){
-      console.log('actualiza')
     }
+
     render() {
         return ( <ScrollView>
           <AppBar/>
@@ -36,24 +37,37 @@ class TarjetasContenedor extends Component {
             style={styles.contenedor}>
             <FlatList style={styles.columna}
               initialNumToRender={6}
+              getItemLayout={(data, index) => {
+                return { length: 117.3, offset: 117.3 * index, index: index };
+              }}
               maxToRenderPerBatch={6}
               keyExtractor = {(item, index) => item.horaIngreso}
               data={this.props.vehiculos.filter( vehiculo => vehiculo.tarifa === 'xHora'  )}
               renderItem={({item}) => <TarjetaHs
                 {...item}/>}
+              shouldItemUpdate={false}
             />
             <FlatList
+              shouldItemUpdate={false}
               style={styles.columna}
               initialNumToRender={6}
+              getItemLayout={(data, index) => {
+                return { length: 117.3, offset: 117.3 * index, index: index };
+              }}
               maxToRenderPerBatch={6}
               keyExtractor = {(item, index) => item.horaIngreso}
               data={this.props.vehiculos.filter( vehiculo => vehiculo.tarifa === 'Doctor'   )}
               renderItem={({item}) => <TarjetaDoc
                 {...item}/>}
             />
-            <FlatList style={styles.columna}
+            <FlatList
+              shouldItemUpdate={false}
+              style={styles.columna}
               initialNumToRender={6}
               maxToRenderPerBatch={6}
+              getItemLayout={(data, index) => {
+                return { length: 117.3, offset: 117.3 * index, index: index };
+              }}
               keyExtractor = {(item, index) => item.horaIngreso}
               data={this.props.vehiculos.filter( vehiculo => vehiculo.tarifa === 'Estadia' ) }
               renderItem={({item}) =>

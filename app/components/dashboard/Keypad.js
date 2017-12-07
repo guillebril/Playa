@@ -7,15 +7,15 @@ export default class keypad extends Component {
     render() {
         return (
             <View style={styles.keypadContainer}>
-                <View style={styles.keytarjeta}>
-                    <Visor/>
-                </View>
-                <View style={styles.tarifa}>
-                    <Tarifas/>
-                </View>
-                <View style={styles.numeros}>
-                    <Numeros/>
-                </View>
+              <View style={styles.keytarjeta}>
+                <Visor/>
+              </View>
+              <View style={styles.tarifa}>
+                <Tarifas/>
+              </View>
+              <View style={styles.numeros}>
+                <Numeros/>
+              </View>
             </View>
         );
     }

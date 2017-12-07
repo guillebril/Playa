@@ -8,7 +8,10 @@ import { ActionCreators } from '../../actions/indexActions.js'
 class Numero extends Component {
 
     agregarNumeroAlaChapa( valor ) {
-      this.props.agregarValorVisor( valor )
+      requestAnimationFrame(() => {
+          this.props.agregarValorVisor( valor )
+            });
+
     setTimeout( () => {
           // This function is able to dispatch other action creators
           this.props.agregarValor( valor )

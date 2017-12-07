@@ -40,3 +40,7 @@ export function entrarVehiculoDoc( chapa, tarifaTiempo, tarifaVehiculo, horaIngr
 export function toggleModal() {
     return { type: types.TOGGLE_MODAL }
 }
+
+export function vehiculoEnModal(chapa, horaIngreso, tarifaTiempo, tarifaVehiculo  ) {
+    return { type: types.VEHICULO_EN_MODAL, chapa, horaIngreso, tarifaTiempo, tarifaVehiculo    }
+}

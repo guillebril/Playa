@@ -10,15 +10,16 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { ActionCreators } from '../../actions/indexActions.js'
 
-
 class Tarjeta24 extends Component {
   cambiarVisibilidad() {
+    this.props.vehiculoEnModal(this.props.chapa, this.props.horaIngreso, this.props.tarifa, this.props.vehiculo)
     this.props.toggleModal()
+
   }
 
   render() {
-      return (
-        <View
+    return (
+      <View
           borderTopWidth={6}
           borderTopColor={'#007AC2'}
           backgroundColor={'#fff'}
@@ -99,10 +100,8 @@ const styles = StyleSheet.create({
   }
 })
 
-
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(ActionCreators, dispatch);
 }
-
 
 export default connect(null, mapDispatchToProps)(Tarjeta24);

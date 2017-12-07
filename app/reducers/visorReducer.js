@@ -112,14 +112,26 @@ export const vehiculos = createReducer( [], {
 
 
 
-export const toggleModal = createReducer( false , {
+export const toggleModal = createReducer(false, {
     [ types.TOGGLE_MODAL ]( state, action ) {
           state = !state
         return state
     }
 } )
 
+export const vehiculoEnModal = createReducer( [] , {
+    [ types.VEHICULO_EN_MODAL ]( state, action ) {
 
+        state = {
+        chapa: action.chapa,
+        horaIngreso: action.horaIngreso,
+        tarifa: 'Doctor',
+        cantidad: action.cantidad,
+        vehiculo: action.tarifaVehiculo,
+      }
+        return state
+    }
+} )
 
 export const tarifas = createReducer( {
     estadiaAuto: 30,
