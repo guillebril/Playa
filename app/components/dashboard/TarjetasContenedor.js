@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableNativeFeedback, FlatList,ScrollView, View } from 'react-native';
+import { StyleSheet, Text, TouchableNativeFeedback, FlatList, ScrollView, View } from 'react-native';
 import Tarjeta24 from './Tarjeta24';
 import TarjetaHs from './TarjetaHs';
 import TarjetaDoc from './TarjetaDoc';
@@ -17,20 +17,18 @@ const getVehiculos = (state) => state.vehiculos
 
 const getVisibleVehiculosbyChapa = createSelector(
 
-  [ getVehiculos, getKeyword ],
+  [getVehiculos, getKeyword],
   (visibleVehiculos, keyword) => visibleVehiculos.filter(
     vehiculo => vehiculo.chapa.includes(keyword)
   )
 
 )
 
-
 class TarjetasContenedor extends Component {
-    componentDidUpdate(){
-    }
+  componentDidUpdate() {}
 
-    render() {
-        return ( <ScrollView>
+  render() {
+    return (<ScrollView>
           <AppBar/>
           <View
 
@@ -77,26 +75,26 @@ class TarjetasContenedor extends Component {
 
             <DetalleModal/>
           </View>
-        </ScrollView> )
-    }
+        </ScrollView>)
+  }
 }
 
-function mapStateToProps( state, props ) {
-    return { vehiculos: getVisibleVehiculosbyChapa(state, props)};
+function mapStateToProps(state, props) {
+  return { vehiculos: getVisibleVehiculosbyChapa(state, props) };
 }
-export default connect( mapStateToProps )( TarjetasContenedor );
+export default connect(mapStateToProps)(TarjetasContenedor);
 
-const styles = StyleSheet.create( {
-    contenedor: {
-        flex: 1,
-        flexDirection: 'row',
-        marginBottom: 20,
-        marginTop: 15,
-        marginLeft: 15
-    },
-    columna: {
-        flex: 1,
-        paddingRight: 18,
+const styles = StyleSheet.create({
+  contenedor: {
+    flex: 1,
+    flexDirection: 'row',
+    marginBottom: 20,
+    marginTop: 15,
+    marginLeft: 15
+  },
+  columna: {
+    flex: 1,
+    paddingRight: 18,
 
-    }
-} );
+  }
+});

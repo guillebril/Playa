@@ -24,8 +24,6 @@ class DetalleModal extends Component {
           transparent={true}
           visible={this.props.estadoModal}
           onRequestClose={() => {alert("Modal has been closed.")}}>
-
-
           <View style={styles.contenedor}>
             <View style={styles.fila1}>
               <View>
